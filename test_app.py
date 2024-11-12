@@ -60,7 +60,7 @@ def test_add_task(client):
         "description": "Complete assignment",
         "category": "work"
     }    
-    response = client.post("/tasks", json=new_task)    
+    response = client.post("/tasks", data=new_task)    
     assert response.status_code == 201 
     created_task = response.json
     assert created_task["description"] == "Complete assignment"
@@ -69,17 +69,17 @@ def test_add_task(client):
     assert "id" in created_task 
 
 def test_add_task_missing_both_fields(client):
-    response = client.post("/tasks", json={})
+    response = client.post("/tasks", data={})
     assert response.status_code == 400
     assert response.json == {"error": "description and category are required"}
 
 def test_add_task_missing_description(client):
-    response = client.post("/tasks", json={"category": "work"})
+    response = client.post("/tasks", data={"category": "work"})
     assert response.status_code == 400
     assert response.json == {"error": "description is required"}
 
 def test_add_task_missing_category(client):
-    response = client.post("/tasks", json={"description": "Complete assignment"})
+    response = client.post("/tasks", data={"description": "Complete assignment"})
     assert response.status_code == 400
     assert response.json == {"error": "category is required"}
     
@@ -198,15 +198,3 @@ def test_get_task_in_category_not_found(client):
     assert response.status_code == 404
     assert response.json == {"error": "category not found"}   
 
-def test_form_submission(client):
-    form_data = {
-        "category": "Test Category",
-        "description": "Test Description"
-    }
-    response = client.post("/submit", data=form_data)
-    assert response.status_code == 201
-    assert response.data.decode('utf-8') == "Your task has been added!"
-    added_task = loaded_tasks[-1]
-    assert added_task["category"] == "Test Category"
-    assert added_task["description"] == "Test Description"
-    assert added_task["status"] == "pending"

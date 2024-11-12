@@ -30,7 +30,7 @@ def get_tasks():
 
 @app.route("/tasks", methods=["POST"])
 def add_task():
-    data = request.json
+    data = request.form
     description = data.get("description")
     category = data.get("category")
 
@@ -130,36 +130,12 @@ def get_task_in_category(category_name):
             tasks_in_category.append(task)
     if tasks_in_category:
         return tasks_in_category, 200
-    else:
-        return {"error": "category not found"}, 404
+    return {"error": "category not found"}, 404
 
 @app.route("/")
 def index():  
     return render_template("index.html", title="Tasks", tasks=loaded_tasks), 200
 
-@app.route("/submit", methods=["POST"])
-def submit():
-    description = request.form["description"]
-    category = request.form["category"]
-
-    new_id = max([task["id"] for task in loaded_tasks], default=0) + 1
-
-    new_task = {"id": new_id, "description": description, "category": category, "status": "pending"}
-
-    if not description and not category:
-        return "description and category are required"
-    
-    if not description:
-        return "description is required"
-    
-    if not category:
-        return "category is required"
-
-    loaded_tasks.append(new_task)
-    with open("tasks.json", "w") as json_file:
-        json.dump(loaded_tasks, json_file)
-
-    return "Your task has been added!", 201
 
         
 
