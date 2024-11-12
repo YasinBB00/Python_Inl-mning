@@ -1,0 +1,23 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.key {
+    font-weight: bold;
+    color: #333;
+}
+
+.value {
+    font-weight:normal;
+    color: #333;
+}
+
+#Title{
+    font-size: 128px;
+}
+

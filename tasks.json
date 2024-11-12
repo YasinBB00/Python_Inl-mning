@@ -1,0 +1,7 @@
+[{"id": 124, "description": "Buy milk, eggs and bread", "category": "Shopping", "status": "complete"}, 
+{"id": 125, "description": "Take out the trash", "category": "cleaning", "status": "complete"}, 
+{"id": 126, "description": "Clean bedroom", "category": "cleaning", "status": "complete"}, 
+{"id": 127, "description": "clean under the kitchen", "category": "cleaning", "status": "complete"}, 
+{"id": 128, "description": "Burgers and fries", "category": "Cooking", "status": "pending"}, 
+{"id": 129, "description": "Ta bort vattenflaska", "category": "stada undan", "status": "pending"}, 
+{"id": 130, "description": "Eggs and bread", "category": "Cooking", "status": "pending"}]
